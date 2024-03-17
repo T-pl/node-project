@@ -1,29 +1,27 @@
 import express from 'express';
+import connectBd from './config/db-connect.js';
+import book from './models/Book.js';
 
+const connection = await connectBd();
+
+connection.on("error", (err) => {
+  console.error("Connection error:", err);
+});
+connection.once("open", () => {
+  console.log("Connection success!");
+});
 const app = express();
 app.use(express.json());
-const books = [
-  {
-    id: 1,
-    "title": "Demian"
-  },
-  {
-    id: 2,
-    "title": "Sidarta"
-  },
-]
 
-const searchBook = (id) => {
-  return books.findIndex(book => {
-    return book.id === Number(id);
-  });
-}
 app.get('/', (req, res) => {
+
   res.status(200).send('Home');
 });
-app.get('/books', (req, res) => {
-  res.status(200).json(books);
-});
+
+// app.get('/books', async (req, res) => {
+//   const listBooks = await book.find({});
+//   res.status(200).json(listBooks);
+// });
 
 
 app.get(`/books/:id`, (req, res) => {
