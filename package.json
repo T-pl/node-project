@@ -1,7 +1,7 @@
 {
   "name": "project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project developed in class of Alura Course to learning the fundamentals of API.",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -17,5 +17,8 @@
     "mongodb": "^6.5.0",
     "mongoose": "^7.3.4",
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.3"
   }
 }
