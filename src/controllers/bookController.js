@@ -45,7 +45,7 @@ class BookController {
   }
 
 
-  static async getBook(req, res) {
+  static async getBookById(req, res) {
     try {
       const id = req.params.id;
       const bookFound = await book.findById(id);
@@ -55,7 +55,17 @@ class BookController {
     }
   };
 
-
+  static async listBooksByPublish(req, res){
+    const publish = req.query.publish;
+    try {
+      const booksByPublish = await book.find({publish});
+      res.status(200).json(booksByPublish);
+      
+    } catch (error) {
+      res.status(500).json({ message: `${error.message} - Faleid get one book by publish.` })
+     
+    }
+  }
 };
 
 export default BookController;
